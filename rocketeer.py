@@ -46,6 +46,12 @@ def get_group(group_name):
     group = [group for group in groups if group['name'] == group_name]
     return group[0] if group else None
 
+def set_topic(group_name, topic):
+    set_topic_response = rocket.channels_set_topic(group_name, topic)
+    if not set_topic_response['success']:
+        raise ValueError(set_topic_response['error'])
+    return set_topic_response
+
 
 print(add_user_to_group("userone", "testgroup3"))
 
